@@ -1,0 +1,92 @@
+html, body {
+    font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+#app {
+    width: 100%;
+    max-width: 980px;
+    padding: 50px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+#app .controlBtn {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+.controlBtn button {
+    font-family: serif;
+    border: 0;
+    background-color: #e1e1e1;
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    margin-right: 5px;
+    outline: none;
+}
+.controlBtn button:disabled, .controlBtn button[disabled] {
+    background-color: #f1f1f1!important;
+    color: #2c3e50!important;
+    cursor: not-allowed!important;
+}
+.controlBtn button:hover {
+    background-color: #3eaf7c;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#app .breadcrumbs {
+    line-height: 36px;
+    margin-left: 10px;
+}
+.breadcrumbs i {
+    font-size: 12px;
+    display: inline-block;
+    vertical-align: top;
+}
+.breadcrumbs .crumb {
+    padding: 0 10px;
+}
+.breadcrumbs .crumb.hidden-file {
+    color: #2c3e5080;
+}
+.breadcrumbs .crumb:hover {
+    color: #3eaf7c;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#app table {
+    width: 100%;
+    border-collapse: collapse;
+}
+table tr {
+    padding: 0px;
+}
+table tr th {
+    font-size: 23px;
+    font-weight: bold;
+    line-height: 36px;
+}
+table tr th, table tr td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #f1f1f1;
+}
+table tr.hidden-file {
+    color: #2c3e5080;
+}
+table tr:hover {
+    background: #f1f1f1;
+}
+
+#app table .dir:hover {
+    color: #3eaf7c;
+    text-decoration: underline;
+    cursor: pointer;
+}
