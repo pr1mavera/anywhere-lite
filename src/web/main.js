@@ -61,25 +61,26 @@ class App {
                 controlBtn.updateDisable();
             }
         });
-        window.addEventListener('popstate', () => {
-            // this.router.stack.pop();
-            this.curIndex--;
-            handlerRequestDirToUpdate();
-        });
 
+        let uid = 0;
+        window.history.replaceState({ uid }, '', window.location.href); // 需要初始化一次浏览器栈history
         this.router = {
             app,
             curIndex: 0,
-            stack: [window.location.href],
-            pushState(...args) {
-                window.history.pushState(...args);
-                this.stack.splice(this.curIndex + 1, this.stack.length, window.location.href);
+            stack: [{ uid }],
+            pushState(state, pageName, path) {
+                uid++;
+                Object.assign(state, { uid });
+                window.history.pushState(state, pageName, path);
+                this.stack.splice(this.curIndex + 1, this.stack.length, state);
                 this.curIndex++;
                 handlerRequestDirToUpdate();
             },
-            replaceState(...args) {
-                window.history.replaceState(...args);
-                this.stack.splice(this.curIndex, this.stack.length, window.location.href);
+            replaceState(state, pageName, path) {
+                uid++;
+                Object.assign(state, { uid });
+                window.history.replaceState(state, pageName, path);
+                this.stack.splice(this.curIndex, this.stack.length, state);
                 handlerRequestDirToUpdate();
             },
             forward() {
@@ -92,7 +93,15 @@ class App {
                 this.curIndex--;
                 handlerRequestDirToUpdate();
             },
-        }
+        };
+
+        window.addEventListener('popstate', event => {
+            const eventState = event.state; // 这里的state.uid一定存在
+            let index = this.router.stack.findIndex(state => state.uid === eventState.uid);
+            if (index < 0) index === 0; // 未找到对应页面的话，重置到第一个页面兜底
+            this.router.curIndex === index;
+            handlerRequestDirToUpdate();
+        });
     }
 }
 

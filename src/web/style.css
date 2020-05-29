@@ -15,6 +15,7 @@ html, body {
 }
 
 #app .controlBtn {
+    width: fit-content;
     margin-left: 10px;
     margin-bottom: 10px;
 }
